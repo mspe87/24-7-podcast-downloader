@@ -2,3 +2,5 @@ requirements.txt
 node_modules
 PodcastDownloader.py
 *.mp3
+images/*
+*.m4a

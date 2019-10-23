@@ -4,7 +4,7 @@ var fs = require('fs');
 const axios = require('axios');
 const NodeID3 = require('node-id3')
 const moment = require('moment');
-const programs = require('./programs.json');
+//const programs = require('./programs.json');
 
 const downloadUrl = "http://arkiv.radio24syv.dk/attachment";
 const imageSet = new Set();
@@ -126,6 +126,7 @@ async function fetchApiToFile(startYear=2014, startMonth=1, programId=10839671){
     year++;
 
   }
+  result.sort((a,b)=>new Date(b.publishInfo.createdAt).getTime()-new Date(a.publishInfo.createdAt).getTime());
   console.log(result);
   console.log(result.length);
   fs.writeFile("programs.json", JSON.stringify(result), function(err) {
@@ -136,6 +137,7 @@ async function fetchApiToFile(startYear=2014, startMonth=1, programId=10839671){
     console.log("The file was saved!");
 });
 }
+//fetchApiToFile()
 
-//fetchAllProgramsSinceYear();
+fetchAllProgramsSinceYear(2014);
 //fetchProgramsForYearMonth(2016, 9).then(()=>console.log("done"))
